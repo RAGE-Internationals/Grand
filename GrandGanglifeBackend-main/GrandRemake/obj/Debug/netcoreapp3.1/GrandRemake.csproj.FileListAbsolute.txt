@@ -1,0 +1,26 @@
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\Desktop\GrandRP Remake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.deps.json
+C:\Users\Administrator\Desktop\GrandRP Remake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.dll
+C:\Users\Administrator\Desktop\GrandRP Remake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.pdb
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRP.dll
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRP.pdb
+C:\Users\Administrator\Desktop\GrandRP Remake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.runtimeconfig.json
+C:\Users\Administrator\Desktop\GrandRP Remake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.runtimeconfig.dev.json
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.genruntimeconfig.cache
+C:\Users\Administrator\source\repos\GrandRemake\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.csproj.AssemblyReference.cache
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.csproj.AssemblyReference.cache
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.AssemblyInfoInputs.cache
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.AssemblyInfo.cs
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.csproj.CoreCompileInputs.cache
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRP.dll
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRP.pdb
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.deps.json
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.runtimeconfig.json
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.runtimeconfig.dev.json
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.dll
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\dotnet\resources\ProjectV\netcoreapp3.1\GrandRP.pdb
+C:\Users\clash\Desktop\GrandGanglifeBackend-main\GrandRemake\obj\Debug\netcoreapp3.1\GrandRemake.genruntimeconfig.cache
