@@ -1,0 +1,317 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	font-family: 'Akrobat', sans-serif;
+	font-size: 20px;
+	font-weight: 800;
+	line-height: 1;
+	margin: 0;
+	padding: 0;
+	background-size: 100%;
+	overflow: hidden;
+	position: relative;
+	background: rgba(31, 55, 55, 0.75);
+
+}
+div,
+textarea,
+button,
+a,
+select,
+input {
+	outline: none !important;
+	text-decoration: none !important;
+}
+
+.leadermenu-center {
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leadermenu-box {
+	width:900px;
+	height:590px;
+	background: #f1efef;
+	display: flex;
+	position:relative;
+
+}
+.leadermenu-box .leadermenu-leftmenu {
+	background: #1a1a1a;
+	width: 280px;
+}
+.leadermenu-box .leadermenu-leftmenu li a {
+	display: flex;
+    align-items: center;
+	justify-content: center;
+    text-transform: uppercase;
+    padding: 30px 20px;
+	color: #ffffff;
+	border-bottom: solid 1px #1a1a1a;
+	font-size: 17px;
+	font-weight: 800;
+	background: #373737;
+}
+.leadermenu-box .leadermenu-leftmenu li.ui-tabs-active a {
+	background: #daa908;
+	color: #1a1a1a;
+}
+.leadermenu-box .leadermenu-content {
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 610px;
+	overflow: hidden;
+}
+.leadermenu-box .leadermenu-content .leadermenu-stats {
+	height: 590px;
+	display: flex;
+	align-items: center;
+    justify-content: center;
+}
+.leadermenu-box .leadermenu-content .leadermenu-stats .leadermenu-progress {
+	background: #ffffff;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(218, 169, 8);
+    font-weight: 600;
+    text-align: center;
+    box-shadow: inset 0 0 0 10px rgb(218, 169, 8);
+    margin-right: 10px;
+}
+.leadermenu-box .leadermenu-content .leadermenu-stats .item {
+	display: flex;
+    flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+.leadermenu-box .leadermenu-content .leadermenu-stats .item p {
+	font-size: 15px;
+	font-weight: 800;
+	text-transform: uppercase;
+	margin-bottom:10px;
+	
+}
+.leadermenu-box .leadermenu-content .leadermenu-stats .open-list {
+	font-size: 15px;
+	cursor:pointer;
+	text-decoration: underline;
+}
+.leadermenu-box .leadermenu-content .leadermenu-stats .open-list:hover {
+	color: rgb(162, 125, 4);
+}
+.dialog-center {
+	position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	z-index: 1000;
+	background:#020202ad;
+}
+.dialog-center .dialog-center-box {
+	width:400px;
+	height:400px;
+	background: #f1efef;
+	display: flex;
+	position:relative;
+	overflow:hidden;
+	position: relative;
+}
+.dialog-center .dialog-center-box .close {
+	position: absolute;
+    font-size: 20px;
+    right: 2%;
+    top: 2%;
+    font-weight: 800;
+    text-transform: uppercase;
+	cursor: pointer;
+	color:#000;
+}
+.dialog-center .dialog-center-box .close:hover {
+	color:#daa908;
+}
+.dialog-center .dialog-center-box .header {
+	position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 15px;
+    font-weight: 500;
+	cursor: context-menu;
+}
+.dialog-center .dialog-center-box .info {
+	position: absolute;
+    top: 50px;
+    left: 10px;
+    width: 95%;
+    height: 300px;
+	background: #eceaea;
+	overflow: overlay;
+}
+.dialog-center .dialog-center-box .info .player {
+	border-bottom: solid 1px #ddd;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+	cursor: pointer;
+}
+.dialog-center .dialog-center-box .info .player:hover {
+	background:rgb(218, 169, 8, 0.1);
+}
+.leadermenu-box .leadermenu-content .leadermenu-table {
+	display:flex;
+	width: 600px;
+    flex-direction: column;
+}
+
+.leadermenu-box .leadermenu-content .leadermenu-table table {
+	font-size: 14px;
+	border-collapse: collapse;
+	text-align: center;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table td {
+	background: #373737;
+    color: #373737;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table th {
+	background: #373737;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.leadermenu-box .leadermenu-content .leadermenu-table th, .leadermenu-box .leadermenu-content .leadermenu-table td {
+	border-bottom: solid 1px #ddd;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table td {
+	background: #fff;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table th:first-child, .leadermenu-box .leadermenu-content .leadermenu-table td:first-child {
+	text-align: left;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .page-list {
+	display: flex;
+    justify-content: center;
+	margin-top:20px;
+	position:relative;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .page-list .number-page {
+	background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    cursor: context-menu;
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .page-list .switching {
+	align-items: center;
+    display: flex;
+	cursor:pointer;
+	padding-left: 10px;
+    padding-right: 10px;
+	transition: color 0.4s ease-in-out;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .page-list .switching:hover {
+	color: #daa908;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .page-list .count-all-members {
+	position: absolute;
+    right: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .top-table {
+	margin-bottom:10px;
+	display:flex;
+	justify-content: space-between;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .top-table .search {
+	
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .top-table .left-menu-table {
+	display:flex;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .top-table .button {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    padding: 7px 30px;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 800;
+    background: #373737;
+    transition: color 0.4s ease-in-out, background 0.4s ease-in-out;
+    margin-right: 10px;
+	cursor:pointer;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .top-table .button:hover {
+	background: #daa908;
+	color: #1a1a1a;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .menu-in-table {
+	display:flex;
+	justify-content: space-between;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .menu-in-table > div {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    padding: 7px 11px;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: 800;
+    background: #373737;
+    transition: color 0.4s ease-in-out, background 0.4s ease-in-out;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.leadermenu-box .leadermenu-content .leadermenu-table .menu-in-table > div:hover {
+	background: #daa908;
+	color: #1a1a1a;
+}
+.online {
+	background: #11ad67;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+	cursor: context-menu;
+	padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.offline {
+	background: #ad1111;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+	cursor: context-menu;
+	padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}

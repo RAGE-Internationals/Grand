@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>leadermenu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="css/reset.css" rel="stylesheet">
+	<link href="fonts/akrobat/akrobat.css" rel="stylesheet">
+	<link href="css/style-leadermenu.css" rel="stylesheet">
+</head>
+<body>
+	<div id = "leadermenu">
+		<div class = "dialog-center" style = "display: none;">
+			<div class = "dialog-center-box">
+				<div class = "close">X</div>
+				<div class = "header">Члены организации онлайн</div>
+				<div class = "info">
+					<span v-for="(item, index) in MembersOnline">
+						<div class = "player">{{item.Name}}</div>
+					</span>
+				</div>
+			</div>
+		</div>
+		<section class = "leadermenu-center">
+			<div class = "leadermenu-box" id="tabs">
+				<ul class = "leadermenu-leftmenu">
+					<li><a href="#tabs-1">Информация об организации</a></li>
+					<li><a href="#tabs-2">Список членов организации</a></li>
+					<li><a href="#tabs-3">Логи</a></li>
+				</ul>
+				<div class = "leadermenu-content">
+					<div id="tabs-1">
+						<div class = "leadermenu-stats">
+							<div class = "item">
+								<p>Члены организации онлайн</p>
+								<span class="leadermenu-progress">
+									<div class = "text">{{PeopleOnline}} чел.<div class = "open-list">Открыть Список</div></div>
+								</span>
+							</div>
+							<div class = "item">
+								<p>Всего игроков в организации</p>
+								<span class="leadermenu-progress">
+									<div class = "text">{{PeopleAll}} чел.</div>
+								</span>
+							</div>
+							<div class = "item">
+								<p>Баланс организации</p>
+								<span class="leadermenu-progress">
+									<div class = "text">${{bank}}</div>
+								</span>
+							</div>
+						</div>
+					</div>
+					<div id="tabs-2">
+						<div class = "leadermenu-table">
+							<div class = "top-table">
+								<div class = "left-menu-table">
+									<div v-if = "Showstate == 0" id = "StateText" class = "button" @click = "ChangeShowState(1)">Показать игроков онлайн</div>
+									<div v-else id = "StateText" class = "button" @click = "ChangeShowState(0)">Показать всех игроков</div>
+									<div class = "button" @click = "LeaderAction(3,0)">Уволить всех</div>
+								</div>
+								<div class = "search">
+									<input type = "text" placeholder = "Поиск" v-model="searchedPlayer">
+								</div>
+							</div>
+							
+							<table>
+								<tr>
+									<th>Имя</th>
+									<th>Ранг</th>
+									<th>Последния вход</th>
+									<th>Действие</th>
+								</tr>
+								<tr v-for="(item, index) in MembersAll" v-if = "Showstate == 1 && item.Onli == 1 && index > last_lastOnliIndex && index <= lastOnliIndex && SearchPlayer(item.Name,searchedPlayer) == 0 || Showstate == 0 && index >= (listmembers-1)*10 && index < listmembers*10 && SearchPlayer(item.Name,searchedPlayer) == 0  || SearchPlayer(item.Name,searchedPlayer) != -1 && searchedPlayer.length > 0">
+									<td>{{item.Name}}</td>
+									<td>{{item.Rank}} ({{item.RankInt}} ранг)</td>
+									<td v-if="item.Onli != 1">{{item.Date}}</td>
+									<td v-else><div class = "online">Онлайн</div></td>
+									<td>
+										<div class = "menu-in-table">
+											<div @click = "LeaderAction(1,item.Id)">Уволить</div>
+											<div @click = "LeaderAction(2,item.Id)">Изменить ранг</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<div class = "page-list">
+								<div class = "switching" @click = "ListPage(0)">⯇</div>
+								<div class = "number-page">{{listmembers}}</div>
+								<div class = "switching" @click = "ListPage(1)">⯈</div>
+								<div class = "count-all-members">Всего во фракции: {{PeopleAll}} чел.</div>
+							</div>
+						</div>
+					</div>
+					<div id="tabs-3">
+						<div class = "leadermenu-table">
+							<table>
+								<tr>
+									<th>Имя</th>
+									<th>Ранг</th>
+									<th>Что делал</th>
+									<th>Дата</th>
+								</tr>
+								<tr v-for="(item, index) in LogsAll" v-if = "index >= (listlog-1)*10 && index < listlog*10">
+									<td>{{item.Name}}</td>
+									<td>{{item.Rank}} ({{item.RankInt}} ранг)</td>
+									<td v-if="Member == 1 && item.Action == 1">Взял патроны</td> 
+									<td>{{item.Date}}</td>
+								</tr>
+							</table>
+							<div class = "page-list">
+								<div class = "switching" @click = "ListLogPage(0)">⯇</div>
+								<div class = "number-page">{{listlog}}</div>
+								<div class = "switching" @click = "ListLogPage(1)">⯈</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script src="js/vue.js"></script>
+	<script>
+		var leader = new Vue({
+			el: "#leadermenu",
+			data:{
+				last_lastOnliIndex:0,
+				lastOnliIndex:0,
+				listmembers: 1,
+				listlog: 1,
+				searchedPlayer:'',
+				Showstate: 0,
+				PeopleOnline: 20,
+				PeopleAll: 100,
+				bank: -1000,
+				Member:1,
+				MembersOnline:[
+					{'Name':'Test_Testerov'},
+					{'Name':'Napal_Fedorov'},
+				],
+				MembersAll:[
+					{'Id': 1028,'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Onli':1},
+					{'Id': 2932,'Name':'Napal_Fedorov','Rank':'Хирург','RankInt':8,'Date': '12.08.2019 12:31','Onli':0},
+					{'Id': 2932,'Name':'Meow_Meow','Rank':'Хирург','RankInt':8,'Date': '12.08.2019 12:31','Onli':0},
+					
+				],
+				LogsAll:[
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'Test_Testerov','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+					{'Name':'1','Rank':'Медбрат','RankInt':2,'Date': '14.08.2019 15:48','Member':1,'Action':1},
+				],
+			},
+			methods: {
+				LeaderAction: function(id,accid){
+					//console.log(`${id} | ${accid}`);
+					mp.trigger('Client_LeaderAction',id,accid);
+				},
+				ChangeShowState: function(state){
+					this.Showstate = state;
+				},
+				SearchPlayer: function(name,searchdata){
+					name = name.toLowerCase();
+					searchdata = searchdata.toLowerCase();
+					let answer = name.search(searchdata);
+					return answer;
+				},
+				ListPage: function(state){
+					if(this.searchedPlayer.length > 0)return;
+					if(!state){
+						if(this.listmembers == 1)return;
+						this.listmembers--;
+						//this.lastOnliIndex = this.last_lastOnliIndex;
+						
+						let count = 0;
+						for(let i = 0;i<this.MembersAll.length;i++){
+							if(this.MembersAll[i].Onli == 1)count++;
+							if(count == (this.listmembers*10) || i == this.MembersAll.length-1){
+								this.lastOnliIndex = i;
+								console.log(count);
+								break;
+							}
+						}
+						count = 0;
+						for(let i = 0;i<this.MembersAll.length;i++){
+							if(this.MembersAll[i].Onli == 1)count++;
+							if(count == ((this.listmembers-1)*10) || i == this.MembersAll.length-1){
+								this.last_lastOnliIndex = i;
+								break;
+							}
+						}
+					}
+					else{
+						if(this.listmembers*10 > this.MembersAll.length)return;
+						this.listmembers++;
+						this.last_lastOnliIndex = this.lastOnliIndex;
+						//
+						let count = 0;
+						for(let i = 0;i<this.MembersAll.length;i++){
+							if(this.MembersAll[i].Onli == 1)count++;
+							if(count == (this.listmembers*10) || i == this.MembersAll.length-1){
+								this.lastOnliIndex = i;
+								break;
+							}
+						}
+						console.log(this.lastOnliIndex);
+						console.log(this.last_lastOnliIndex);
+					}
+					console.log(`${this.listmembers}`);
+				},
+				ListLogPage: function(state){
+					if(!state){
+						if(this.listlog == 1)return;
+						this.listlog--;
+					}
+					else{
+						if(this.listlog*10 > this.LogsAll.length)return;
+						this.listlog++;
+						//
+					}
+				},
+				Load: function(member,bank,online,all,logs){
+					this.PeopleOnline = online.length;
+					this.PeopleAll = all.length;
+					this.bank = bank;
+					this.Member = member;
+					this.MembersOnline = online;
+					this.MembersAll = all;
+					this.LogsAll = logs;
+					//
+					this.last_lastOnliIndex = -1;
+					//
+					let count = 0;
+					for(let i = 0;i<this.MembersAll.length;i++){
+						if(this.MembersAll[i].Onli == 1)count++;
+						if(count == (this.listmembers*10) || i == this.MembersAll.length-1){
+							this.lastOnliIndex = i;
+							break;
+						}
+					}
+				},
+				ReloadMembers: function(online,all){
+					this.MembersOnline = online;
+					this.MembersAll = all;
+					//
+					this.last_lastOnliIndex = -1;
+					//
+					let count = 0;
+					for(let i = 0;i<this.MembersAll.length;i++){
+						if(this.MembersAll[i].Onli == 1)count++;
+						if(count == (this.listmembers*10) || i == this.MembersAll.length-1){
+							this.lastOnliIndex = i;
+							break;
+						}
+					}
+				},
+			},
+			created: function() {
+				this.last_lastOnliIndex = -1;
+				let count = 0;
+				for(let i = 0;i<this.MembersAll.length;i++){
+					if(this.MembersAll[i].Onli == 1)count++;
+					if(count == (this.listmembers*10) || i == this.MembersAll.length-1){
+						this.lastOnliIndex = i;
+						break;
+					}
+				}
+			}
+		});
+		$(function() {
+			$( "#tabs" ).tabs();
+		});
+		$( ".open-list" ).click(function() {
+			$('.dialog-center').fadeIn();
+		});
+		$( ".close" ).click(function() {
+			$('.dialog-center').fadeOut();
+		});
+	</script>
+</body>
+</html>
