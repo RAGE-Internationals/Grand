@@ -1,0 +1,10 @@
+{
+	"maxplayers" : 200,
+	"name" : "ProjectV - [German][roleplay]", 
+	"gamemode" : "roleplay", 
+	"stream-distance" : 500.0,
+	"announce" : false,
+	"csharp" : "enabled",
+        "api-threading-debugging" : false,
+	"port": 22005
+}
